@@ -1,6 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>test</title>
+    <url>/2019/10/26/test-9/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2019/10/26/test-8/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2019/10/26/test-7/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2019/10/26/test-6/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2019/10/26/test-5/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2019/10/26/test-4/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2019/10/26/test-3/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2019/10/26/test-2/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2019/10/26/test-1/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2019/10/26/test/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>arts_one</title>
+    <url>/2019/10/26/arts-one/</url>
+    <content><![CDATA[<blockquote>
+<p>ARTS</p>
+<blockquote>
+<p>A(Algorithm): 完成一道leetcode算法题，顺带重新熟悉数据结构和算法；<br>R(Review): 阅读相关/有兴趣的英文技术文章，主要是为了学习英文；<br>T(Tips): 学习至少一个技术技巧，主要为了总结和归纳在日常工作中遇到的知识点；<br>S(Share): 编写一篇文章，让自己习惯输出；</p>
+</blockquote>
+</blockquote>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>第一周先熟悉下数据结构吧，随便挑了道链表的基础题：<a href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank" rel="noopener">有序链表合并LC21</a></p>
+<h4 id="递归："><a href="#递归：" class="headerlink" title="递归："></a>递归：</h4><p>由于题目给与的两个入参明确为有序链表，排除空链表以及尾节点的情况下，只需要简单比较当前节点大小并递归下一节点即可，时间空间复杂度均为O(n)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123;</span><br><span class="line">       if (Objects.isNull(l1) &amp;&amp; Objects.isNull(l2)) &#123;</span><br><span class="line">           return null;</span><br><span class="line">       &#125; else if (Objects.isNull(l1)) &#123;</span><br><span class="line">           return l2;</span><br><span class="line">       &#125; else if (Objects.isNull(l2)) &#123;</span><br><span class="line">           return l1;</span><br><span class="line">       &#125;</span><br><span class="line">       ListNode result;</span><br><span class="line">       if (l1.val &lt;= l2.val) &#123;</span><br><span class="line">           result = l1;</span><br><span class="line">           result.next = mergeTwoLists(l1.next, l2);</span><br><span class="line">       &#125; else &#123;</span><br><span class="line">           result = l2;</span><br><span class="line">           result.next = mergeTwoLists(l1, l2.next);</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="迭代："><a href="#迭代：" class="headerlink" title="迭代："></a>迭代：</h4><p>手动建立一个新的结果链表节点result，同时放置标记prev。循环迭代 l1、l2节点 并比较大小 小的设为标记节点的next节点，重置标记节点为结果链表的最后一个节点，直到l1、l2链表其一到达null节点为止，排除已结束的链表并把另一链表的剩余项加入结果链表</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123;</span><br><span class="line">       ListNode result = new ListNode(-1);</span><br><span class="line">       ListNode prev = result;</span><br><span class="line">       while (l1 != null &amp;&amp; l2 != null) &#123;</span><br><span class="line">           if (l1.val &lt;= l2.val) &#123;</span><br><span class="line">               prev.next = l1;</span><br><span class="line">               l1 = l1.next;</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               prev.next = l2;</span><br><span class="line">               l2 = l2.next;</span><br><span class="line">           &#125;</span><br><span class="line">           prev = prev.next;</span><br><span class="line">       &#125;</span><br><span class="line">       prev.next = l1 == null ? l2 : l1;</span><br><span class="line">       return result.next;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://towardsdatascience.com/great-developers-never-stop-learning-77b9ce867eac" target="_blank" rel="noopener">一名优秀程序员应该持续学习</a><br>找着review的文章刚好找到一篇歪果仁妹子写的持续学习，刚好符合开篇，就它了。</p>
+<blockquote>
+<p>Although it is impossible to stay up to speed with everything in this rapidly changing world of I.T., we need to choose a few areas that interest us (whether these areas are related to our current job, or the one we want in the future) and carve time out to up-skill.</p>
+<p>在这个瞬息万变的IT世界我们不可能学习所有新技术，所以我们需要选择一部分与自身工作相关或者与自身规划相关的部分然后抽出时间来提升这些技能。</p>
+</blockquote>
+<ol>
+<li>阅读的艺术（书籍、博客、推特（当然对我们来说是微博、微信…））</li>
+<li>从热爱阅读到热爱写作 （要知道学会一件事最有效的方法就是教别人学会）</li>
+<li>播客的碎片学习 （你可以在做饭、工作、无聊时多线程地学习）</li>
+<li>参与在线课程 （优秀的教学视频是平衡理论和实践的完美选择）</li>
+<li>实践出真知 （概念验证（POC）、宠物项目、开源项目、在线社区、黑客马拉松）</li>
+<li>结对编程（代码审查）</li>
+<li>社交活动（参加行业活动、加微信群、建立自己的社交网络…）</li>
+</ol>
+<h2 id="Tip-amp-Share"><a href="#Tip-amp-Share" class="headerlink" title="Tip&amp;Share"></a>Tip&amp;Share</h2><p>最近重新搭建了hexo的blog，但是hexo的操作基本都是命令行控制，导致每次hexo new post 后都要到指定目录打开md文件或者再通过vi来手动编辑。</p>
+<p>然而作为一个懒人每次多开一个窗口切换然后打开文件又嫌麻烦，作为vim新手又不想调教markdown版本的vim，只好偷下懒想办法在new post的时候让系统同时打开自己习惯使用的外部编辑器了。</p>
+<p>查询了一下万能的度娘/谷歌娘，结果有了:hexo自身提供了<a href="https://hexo.io/api/events#new" target="_blank" rel="noopener">new事件</a><br>的监听功能</p>
+<blockquote>
+<p>new</p>
+<p>Emitted after a new post has been created. This event returns the post data:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo.on(&apos;new&apos;, function(post)&#123;</span><br><span class="line">  //</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>有了监听事件那么问题就简单了，直接监听然后node子进程exec打开文档就好了。</p>
+<p>由于我自身惯用的图形编辑器是macdown，原先是准备直接<code>open macdown.app</code>但是它无法打开指定文档。</p>
+<p>查了文档后发现macdown自带<a href="https://github.com/MacDownApp/macdown/wiki/Advanced-Usage" target="_blank" rel="noopener">进阶使用</a>，直接在/urs/local/bin下创建当前脚本<code>macdown</code>的软链，就可以直接通过命令打开指定文件。</p>
+<p><code>$ ln -s &quot;/Applications/MacDown.app/Contents/SharedSupport/bin/macdown&quot; /usr/local/bin/macdown</code></p>
+<p>准备工作完成，剩下只用在博客目录下新建scripts目录（已有无视），再在目录下建立脚本文件listen_new.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var spawn = require(&apos;child_process&apos;).exec;</span><br><span class="line">// Hexo 3</span><br><span class="line">hexo.on(&apos;new&apos;, function(data)&#123;</span><br><span class="line">     exec(&quot;macdown &quot; + data.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这之后再次新建文章是会自动在macdown中打开新生成的md文件了。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2019/10/16/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
