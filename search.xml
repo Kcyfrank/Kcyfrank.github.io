@@ -44,7 +44,7 @@
 <p>查了文档后发现macdown自带<a href="https://github.com/MacDownApp/macdown/wiki/Advanced-Usage" target="_blank" rel="noopener">进阶使用</a>，直接在/urs/local/bin下创建当前脚本<code>macdown</code>的软链，就可以直接通过命令打开指定文件。</p>
 <p><code>$ ln -s &quot;/Applications/MacDown.app/Contents/SharedSupport/bin/macdown&quot; /usr/local/bin/macdown</code></p>
 <p>准备工作完成，剩下只用在博客目录下新建scripts目录（已有无视），再在目录下建立脚本文件listen_new.js</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var spawn = require(&apos;child_process&apos;).exec;</span><br><span class="line">// Hexo 3</span><br><span class="line">hexo.on(&apos;new&apos;, function(data)&#123;</span><br><span class="line">     exec(&quot;macdown &quot; + data.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var exec = require(&apos;child_process&apos;).exec;</span><br><span class="line">// Hexo 3</span><br><span class="line">hexo.on(&apos;new&apos;, function(data)&#123;</span><br><span class="line">     exec(&quot;macdown &quot; + data.path);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>这之后再次新建文章是会自动在macdown中打开新生成的md文件了。</p>
 ]]></content>
