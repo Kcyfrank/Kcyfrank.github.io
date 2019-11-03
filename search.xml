@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>arts_two</title>
+    <url>/2019/11/02/arts-two/</url>
+    <content><![CDATA[<blockquote>
+<p>ARTS</p>
+<blockquote>
+<p>A(Algorithm): 完成一道leetcode算法题，顺带重新熟悉数据结构和算法；<br>R(Review): 阅读相关/有兴趣的英文技术文章，主要是为了学习英文；<br>T(Tips): 学习至少一个技术技巧，主要为了总结和归纳在日常工作中遇到的知识点；<br>S(Share): 编写一篇文章，让自己习惯输出；</p>
+</blockquote>
+</blockquote>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>第二周继续链表练习：<a href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank" rel="noopener">求链表的中间结点LC876</a></p>
+<h4 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h4><p>由快慢指针获取中点位置</p>
+<p>fast slow 节点同时从前置dumy节点出发。</p>
+<p>fast==null 到达奇数链表尾节点，即长度为2n-1，slow节点为n,正确;</p>
+<p>fast.next==null 到达偶数链表的尾节点的前一节点，即长度为2n，slow节点为n，但正确节点应该为n+1;</p>
+<p>简单题。。但是由于读题错误导致解题错误。。</p>
+<p>题目说明给定了一个带head节点的链表。。误以为是一个类似dummy节点的标记节点</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">middleNode</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">    dummy.next = head;</span><br><span class="line">    ListNode fast = dummy;</span><br><span class="line">    ListNode slow = dummy;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">        fast = fast.next.next;</span><br><span class="line">        slow = slow.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (fast == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> slow.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="优化："><a href="#优化：" class="headerlink" title="优化："></a>优化：</h4><p>原思路一是根据存在前置节点的情况预读，去除前置节点，从首节点出发：</p>
+<p>fast==null时 即链表为偶数链表，长度为2n,同时slow节点同时处于n+1节点即符合双中点的后者，正确。</p>
+<p>fast.nest==null时，即链表为奇数链表 长度为2n+1，slow节点为n+1，正确。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> ListNode <span class="title">middleNode</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">         ListNode fast = head;</span><br><span class="line">         ListNode slow = head;</span><br><span class="line">         <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">             fast = fast.next.next;</span><br><span class="line">             slow = slow.next;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> slow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://forge.medium.com/3-steps-to-beating-imposter-syndrome-78e8e7e3f4c3" target="_blank" rel="noopener">三步击败冒名顶替综合征</a></p>
+<p>说服自己才是坚持一件事的最基础起点，WHW：为什么我们要下笔，我们要怎么分享，我们要分享什么。</p>
+<p>嘛，刚好在<code>medium</code>的首页看到这篇的推荐，作为第二篇也很适合，毕竟上一篇也有说道冒名顶替综合征。</p>
+<blockquote>
+<p>impostor syndrome is rarely a sign that you’re going down the wrong path. Most of the time, it’s simply a defense mechanism against failure and disappointment. When we try to talk ourselves out of pursuing our goals, when we try to convince ourselves that our work isn’t important, we’re avoiding whatever it is we need to do. <em>We don’t want to falter, so we never start. And when we never start, we never succeed</em>.</p>
+<p>冒名顶替综合征很少表示你走错了路。大多数情况下，它只是针对失败和失望的防御机制。我们不想动摇，所以我们不回去开始。当我们不开始，我们也就永远不会成功。</p>
+</blockquote>
+<ol>
+<li><strong>承认这种感觉</strong> 你如果怕自己不太适合或者害怕尝试，这是正常的。</li>
+<li><strong>检查你的动机</strong> 找到自己的why</li>
+<li><strong>把自己当做求知者</strong> 承认并找到你不擅长的内容，然后去学习。不是为了假装自己的博学，仅仅只是为了自己的好奇心</li>
+</ol>
+<blockquote>
+<p>Treat your work as one big experiment; an opportunity to learn. Because in the end, that’s exactly what it is.</p>
+<p>将您的工作视为一项重大实验；一个学习的机会。因为最终，这就是事实。</p>
+</blockquote>
+<h2 id="Tip-amp-Share"><a href="#Tip-amp-Share" class="headerlink" title="Tip&amp;Share"></a>Tip&amp;Share</h2><p>上面提到了一下 WHW 那么这次就顺带简单说一下 黄金圈吧。</p>
+<p>这是由作家 西门·奈克（Simon O. Sinek）提出一个为了更好地卖出自己的产品的营销法则，但是经过时间实践，慢慢地人们发现它其实适用于各种情况下。当然这里主要是说黄金圈法则由内到外的用法，即（WHY-HOW-WHAT）。<br><img src="https://blog-1300448206.cos.ap-shanghai.myqcloud.com/pasted%20image%200.png" alt="WHY-HOW-WHAT"></p>
+<p>在生活中每个人每个公司都明白自己是做什么的（what），部分领导也会明确知道一个任务要怎么完成（how），但是只有少数人有着为什么做这件事（why）的觉悟。拿到任务，简单分析怎么做，开始下手，这是大部分人的常态，我们不会去考虑这件事的缘由。所以做下以下的思考：你的目的是什么？你这么做的原因是什么？你怀着怎么样的理想？</p>
+<p>黄金圈的出发点和中心是“为什么<code>WHY</code>”的问题，WHY代表着我们的目的和理念。</p>
+<p>我为什么要写博客？为了习惯输出？不够。为了学习？不够。为了结交部分朋友？不够。因为恐慌？部分正确。继续思考ing.</p>
+<p>同时我们有了目标，我们要怎么做（how）这件事，具体计划、临时计划、怎么安排等等，这是我们的具体操作方式和措施。</p>
+<p>我要怎么写博客？暂时不太清楚，先按照arts的标准来慢慢习惯，再找到自己习惯/喜欢的方式。</p>
+<p>那么经由以上两者之后所造就的结果就是什么（what），它是我们的经历以及成果。</p>
+<p>我要写些什么？应该是我学到了什么。</p>
+<p>这是一个追求长期目标的不二法则，当然前提还是坚持。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>arts_one</title>
     <url>/2019/10/26/arts-one/</url>
     <content><![CDATA[<blockquote>
@@ -37,7 +90,7 @@
 <blockquote>
 <p>new</p>
 <p>Emitted after a new post has been created. This event returns the post data:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo.on(&apos;new&apos;, function(post)&#123;</span><br><span class="line">  //</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;hexo.on(&apos;new&apos;, function(post)&#123;</span><br><span class="line">&gt;  //</span><br><span class="line">&gt;&#125;);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>有了监听事件那么问题就简单了，直接监听然后node子进程exec打开文档就好了。</p>
 <p>由于我自身惯用的图形编辑器是macdown，原先是准备直接<code>open macdown.app</code>但是它无法打开指定文档。</p>
