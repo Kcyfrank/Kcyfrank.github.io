@@ -62,7 +62,7 @@
 <meta property="og:site_name" content="某某的杂货铺">
 <meta property="og:description" content="ARTS  A(Algorithm): 完成一道leetcode算法题，顺带重新熟悉数据结构和算法；R(Review): 阅读相关/有兴趣的英文技术文章，主要是为了学习英文；T(Tips): 学习至少一个技术技巧，主要为了总结和归纳在日常工作中遇到的知识点；S(Share): 编写一篇文章，让自己习惯输出；   Algorithm第三周来看看栈吧，经典的栈题目：有效的括号LC20 解题：简单题，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-10T03:27:52.565Z">
+<meta property="og:updated_time" content="2019-11-10T03:30:05.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="arts_three">
 <meta name="twitter:description" content="ARTS  A(Algorithm): 完成一道leetcode算法题，顺带重新熟悉数据结构和算法；R(Review): 阅读相关/有兴趣的英文技术文章，主要是为了学习英文；T(Tips): 学习至少一个技术技巧，主要为了总结和归纳在日常工作中遇到的知识点；S(Share): 编写一篇文章，让自己习惯输出；   Algorithm第三周来看看栈吧，经典的栈题目：有效的括号LC20 解题：简单题，">
@@ -294,7 +294,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-10 11:27:52" itemprop="dateModified" datetime="2019-11-10T11:27:52+08:00">2019-11-10</time>
+                <time title="修改时间：2019-11-10 11:30:05" itemprop="dateModified" datetime="2019-11-10T11:30:05+08:00">2019-11-10</time>
               </span>
             
           
@@ -390,7 +390,7 @@
 <p>后进者先出，先进者后出，这就是典型的“栈”结构。</p>
 <p>简单来看 它可以看做一条笔直向下的没有终点的单向地道，你进来方便，抓住梯子往下行进，但是如果你想出去，你必需要求并等待你上方的所有人都先出去，并让路给你。</p>
 </blockquote>
-<p>从栈的操作特性上来看，<strong>栈是一种“操作受限”的线性表</strong>，你只有两个操作 插入新的尾节点，删除尾节点。</p>
+<p>从栈的操作特性上来看，<strong>栈是一种“操作受限”的线性表</strong>，你只有两个操作 置入栈顶元素，取出栈顶元素。</p>
 <p>就原理来说 链表和数组都可以作为栈，用数组实现的栈，称为<strong>顺序栈</strong>，用链表实现的栈，称为<strong>链式栈</strong>。</p>
 <p>两者的操作时间复杂度均为O(1)。顺序栈需要提前声明大小，若超出，则需要额外的扩容操作；链式栈不需要扩容但是需要额外存储对应的指针域。</p>
 <h4 id="括号匹配"><a href="#括号匹配" class="headerlink" title="括号匹配"></a>括号匹配</h4><p>如同上面的 LC20 所示 给定包含<code>括号（）、中括号[]、花括号{}</code>三种字符的字符创，只要能成功闭合就是一个合法字符串，合法串：”()” “()[]{}” “” 非法串：”(]””({)]”， 完整的文字版解题思路：</p>
