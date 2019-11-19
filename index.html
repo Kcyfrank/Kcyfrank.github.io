@@ -248,6 +248,218 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/arts-four/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="forip">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="某某的杂货铺">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            
+            <a href="/2019/11/16/arts-four/" class="post-title-link" itemprop="url">arts_four</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-16 23:19:13" itemprop="dateCreated datePublished" datetime="2019-11-16T23:19:13+08:00">2019-11-16</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-19 11:30:41" itemprop="dateModified" datetime="2019-11-19T11:30:41+08:00">2019-11-19</time>
+              </span>
+            
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>ARTS</p>
+<blockquote>
+<p>A(Algorithm): 完成一道leetcode算法题，顺带重新熟悉数据结构和算法；<br>R(Review): 阅读相关/有兴趣的英文技术文章，主要是为了学习英文；<br>T(Tips): 学习至少一个技术技巧，主要为了总结和归纳在日常工作中遇到的知识点；<br>S(Share): 编写一篇文章，让自己习惯输出；</p>
+</blockquote>
+</blockquote>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>第四周继续栈，经典的栈题目：<a href="https://leetcode.com/problems/basic-calculator/" target="_blank" rel="noopener">基本计算器LC224</a></p>
+<p>实现一个基本计算器，输入的是只含有括号数字加减号空格的字符串。</p>
+<p>不包含乘除那么只剩下括号的优先级以及需要留意正负数</p>
+<h4 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h4><p>逐个解析字符，拼接连续的数字， 加减作为符号作为 加上一个 （正负1 * 下个数字）</p>
+<p>碰见起始括号时 把当前符号以及算式结果放入栈，重置算式结果和符号标记</p>
+<p>遇见结束括号时，取出栈的前两个元素 并与算式结果进行计算。 </p>
+<pre><code>public int calculate(String s) {
+   Stack&lt;Integer&gt; stk = new Stack&lt;&gt;();
+    // sign为1，可以考虑第一个数字没有符号的情况
+    int sign = 1;
+    int res = 0;
+    for (int i = 0; i &lt; s.length(); i++) {
+        char ch = s.charAt(i);
+        //当前符号是否为数字
+        if (Character.isDigit(ch)) {
+            //与‘0’字符相减 获取实际数字大小
+            int curSum = s.charAt(i) - &apos;0&apos;;
+            //如果不符合要求，不会自增，也就不会跳过符号位
+            //符合条件 说明该数字未结束 进一位 在获取下一位的准确数字大小
+            while (i + 1 &lt; s.length() 
+                    &amp;&amp; Character.isDigit(s.charAt(i + 1)))
+                curSum = curSum * 10 + s.charAt(++i) - &apos;0&apos;;
+            // res等于符号位乘以本次结果和之前的res之和
+            res += sign * curSum;
+        //把加减都视为+法 加为+ 1*n 减为+ -1*n 统一运算
+        } else if (ch == &apos;+&apos;)
+            sign = 1;
+        else if (ch == &apos;-&apos;)
+            sign = -1;
+        // 遇到左括号时将res及括号之前的运算符压栈
+        else if (ch == &apos;(&apos;) {
+            // 因res存入栈中，需要将res置为0，取出的时候从栈取res计算
+            stk.push(res);
+            res = 0;// 注意
+            // sign置为1，已把sign放入栈中，重置
+            stk.push(sign);// 注意
+            sign = 1;
+        } else if (ch == &apos;)&apos;) {
+            res = stk.pop() * res + stk.pop();
+        }
+    }
+    return res;
+}</code></pre><h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://blog.pragmaticengineer.com/software-engineering-promotions/" target="_blank" rel="noopener">Software Engineering Promotions: Advice to Get to That Next Level</a> 软件工程师提升系列：如何迈向更高阶段</p>
+<ul>
+<li><p>做好充足的准备</p>
+<ul>
+<li>了解公司的晋级流程制度  针对公司制度进行准备 考证、业务要求等。</li>
+<li>评估自身的能力 先让自己在当前阶段做到最好</li>
+<li>与你的直属领导进行交流</li>
+<li>一定的宏观能力</li>
+</ul>
+</li>
+<li><p>开始表现并行动</p>
+<ul>
+<li>不断设立小目标 来让自己进步</li>
+<li>勇于承当重要的公共任务与团队责任</li>
+<li>让领导知道自己在干什么</li>
+</ul>
+</li>
+<li><p>认真工作</p>
+<ul>
+<li>与团队共同进步</li>
+<li>成功前的最后一秒也不能松懈</li>
+</ul>
+</li>
+<li><p>脚踏实地</p>
+<ul>
+<li>不要相信大饼</li>
+<li>不要把升职作为唯一目标</li>
+<li>除升职外还有其他能获取正面评价的方法</li>
+<li>保持耐心</li>
+</ul>
+</li>
+<li><p>帮助他人</p>
+<ul>
+<li>最好的学习方法就是教别人。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Tip-amp-Share"><a href="#Tip-amp-Share" class="headerlink" title="Tip&amp;Share"></a>Tip&amp;Share</h2><p>这期就总结下队列的相关知识点</p>
+<h4 id="什么是“队列”？"><a href="#什么是“队列”？" class="headerlink" title="什么是“队列”？"></a>什么是“队列”？</h4><blockquote>
+<p>先进者先出，这就是典型的“队列”。</p>
+<p>队列与栈的差别。栈是往一个盒子里放东西，你放入后只能先把上面压着的东西先拿走。而队列则是一个冰淇淋脆筒支架，你只能拿出处于最前面的脆筒。</p>
+</blockquote>
+<p>队列与栈相似也是一种操作受限的线性表数据结构。队列与栈一致，只有两个操作：<code>入队 enqueue()</code>，在放入一个数据到队列 和 <code>出队 dequeue()</code>从队列头部取一个元素。</p>
+<p>同理队列作为抽象数据结构一样存在两种实现，用数组实现的队列叫作顺序队列，用链表实现的队列叫作链式队列。</p>
+<p>一些具有某些额外特性的队列：循环队列、阻塞队列、并发队列。</p>
+<ul>
+<li><p>循环队列：</p>
+<ul>
+<li>收尾相连的队列</li>
+<li>必需确定好队空和队满的判定条件</li>
+</ul>
+</li>
+<li><p>阻塞队列：</p>
+<ul>
+<li>队列的基础上存在阻塞操作；</li>
+<li>队列为空时，取出操作为阻塞；队列满时，插入操作被阻塞；</li>
+<li>一个简单的 生产者-消费者模型</li>
+</ul>
+</li>
+<li><p>并发队列：</p>
+<ul>
+<li>在多线程的情况下，能够有效解决线程安全问题的队列。</li>
+</ul>
+</li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/09/arts-three/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -858,7 +1070,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -893,12 +1105,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">8k</span>
+    <span title="站点总字数">10k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">15 分钟</span>
+    <span title="站点阅读时长">18 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
