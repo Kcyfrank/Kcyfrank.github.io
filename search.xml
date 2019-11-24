@@ -1,6 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>arts_five</title>
+    <url>/2019/11/19/arts-five/</url>
+    <content><![CDATA[<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>第五周继续栈：<a href="https://leetcode.com/problems/min-stack/" target="_blank" rel="noopener">最小栈LC115</a></p>
+<p>设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。</p>
+<h4 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h4><p>简单题，但是自己的解题思路好像有点错了，按照自己的想法这题应该是手动实现一个顺序栈或者链式栈的同时维护一个最小值，虽说ac了，但是看了下别人的题解，基本都是直接着眼在最小元素 而不是实现栈。同时存在两种不同的思路：一<br>存储当前最小值与当前值之间的差值 min， 最大值可以为 Integer.max-integer.min ;二 使用同步辅助栈，同时维护当前值与最小值。相对来说第二种更容易理解。</p>
+<p>第二种解法也可以优化成使用异步辅助栈或者单个栈。</p>
+<pre><code>public class MinStack {
+
+    // 数据栈
+    private Stack&lt;Integer&gt; data;
+    // 辅助栈
+    private Stack&lt;Integer&gt; helper;
+
+    /**
+     * initialize your data structure here.
+     */
+    public MinStack() {
+        data = new Stack&lt;&gt;();
+        helper = new Stack&lt;&gt;();
+    }
+
+    //数据栈和辅助栈在任何时候都同步
+
+    public void push(int x) {
+        // 数据栈和辅助栈一定会增加元素
+        data.add(x);
+        //仅当当前值为最小值或辅助栈为空时add当前值
+        if (helper.isEmpty() || helper.peek() &gt;= x) {
+            helper.add(x);
+        } else {
+            helper.add(helper.peek());
+        }
+    }
+
+    public void pop() {
+        // 两个栈都得 pop
+       helper.pop();
+       data.pop();
+
+    }
+
+    public int top() {
+        return data.peek();
+
+    }
+
+    public int getMin() {
+        return helper.peek();
+    }
+}</code></pre><h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://syncedreview.com/2019/10/14/shake-your-booty-ai-deepfakes-dance-moves-from-a-single-picture/" target="_blank" rel="noopener">Shake Your Booty: AI Deepfakes Dance Moves From a Single Picture</a> </p>
+<p>你是否笨手笨脚？你是否因为害怕尴尬而避开舞池？你是否想像明星一样拥有优美的舞姿？（至少在视频中是这样的）</p>
+<p>这里有一个全新的3D人体网格恢复AI模块<em>Liquid Warping GAN</em>可以帮到你。</p>
+<p>它只需要你的一张照片以及一个舞蹈视频片段。</p>
+<p><img src="https://github.com/svip-lab/impersonator/raw/master/assets/visuals/motion/Sweaters-id_0000088807_4_full.jpg" alt="yourimg"><br><img src="https://github.com/svip-lab/impersonator/raw/master/assets/visuals/motion/mixamo_0007_Sweaters-id_0000088807_4_full.gif" alt="result"></p>
+<p>此前人类图像合成方法可能难以识别不同款式、颜色和质地的服装；不同人体的空间和几何的巨大差异；多样的输入源；</p>
+<p><em>Liquid Warping GAN</em>解决了这些问题，它不仅可以模拟关节的位置和旋转，而且可以通过单个图片和视频剪辑输入来表征个性化的身体形状</p>
+<p><img src="https://blog-1300448206.cos.ap-shanghai.myqcloud.com/image-ai-dance.png" alt="AI-DANCE"></p>
+<p>论文《Liquid Warping GAN：用于模仿人体运动，外观转移和新颖的视图合成的统一框架》已在<a href="https://arxiv.org/pdf/1909.12224.pdf" target="_blank" rel="noopener">arXiv</a>上发布。 相关的PyTorch实现可在<a href="https://github.com/svip-lab/impersonator" target="_blank" rel="noopener">GitHub</a>上找到。</p>
+<p>话说之前8月份的ZAOAI已经刷了一波朋友圈= =如果那个公司无聊起来拿这东西再做一个，感觉要关朋友圈了啊，上次看的简直瞎眼，不过看了下项目预览的gif，动作不太流畅的鸭子。</p>
+<h2 id="Tip-amp-Share"><a href="#Tip-amp-Share" class="headerlink" title="Tip&amp;Share"></a>Tip&amp;Share</h2><p> 这周来推本小说吧，不看小说那么当电影看也行，电影也不看？那来个动画剧场版如何？</p>
+<p> 小说：<a href="https://book.douban.com/subject/26826548/" target="_blank" rel="noopener">我想吃掉妳的胰臟</a><br> <img src="https://img3.doubanio.com/view/subject/l/public/s29025913.jpg" alt="我想吃掉妳的胰臟"></p>
+<p> 动画：<a href="https://movie.douban.com/subject/27107140/" target="_blank" rel="noopener">我想吃掉你的胰脏</a>:</p>
+<p> <img src="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2545571306.webp" alt="我想吃掉你的胰脏"></p>
+<p> 电影：<a href="https://movie.douban.com/subject/26869119/" target="_blank" rel="noopener">念念手纪 君の膵臓をたべたい</a><br> <img src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2531648684.webp" alt="念念手纪 君の膵臓をたべたい"></p>
+<p><strong>一个凄美的成长故事</strong></p>
+<p> 印象里好像是意外翻到了好几次，第4还是第5次被标题吸引进去了看了动画版，虽说这是个满分的点题名字，不过在没看之前第一印象肯定是标题党。</p>
+<blockquote>
+<p>“胰脏被吃掉的话，灵魂就会继续活在那个人心里”</p>
+</blockquote>
+<p> 第一次看到动画里的这句台词，没有啥感想，认定这只是点了下题，但看完3个版本再回来看这句话配上女主轻快的语调却忍不住泪目了。</p>
+<blockquote>
+<p>用普通的句子來表達我和你的關係，實在太可惜了，</p>
+<p>我果然還是，想吃掉你的胰臟！</p>
+</blockquote>
+<p>毕竟是个推荐直接放长篇评论(剧透)好像不好，不怕剧透的话在豆瓣的点评里看吧，反正我放那了。</p>
+<p>相对来说不带脑看推荐动画版，电影版导演把剧情线重新排了一下，不过人物形象树立的不错。当然想认真看的我推荐小说版，当然看完一个版本觉得不错建议三个都看一遍，个人感觉三个版本我感觉都还不错（除了电影版译名太垃圾）。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>arts_four</title>
     <url>/2019/11/16/arts-four/</url>
     <content><![CDATA[<blockquote>
