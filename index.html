@@ -248,6 +248,208 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/28/arts-six/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="forip">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="某某的杂货铺">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            
+            <a href="/2019/11/28/arts-six/" class="post-title-link" itemprop="url">arts_six</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-28 15:43:49" itemprop="dateCreated datePublished" datetime="2019-11-28T15:43:49+08:00">2019-11-28</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-01 11:46:08" itemprop="dateModified" datetime="2019-12-01T11:46:08+08:00">2019-12-01</time>
+              </span>
+            
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.7k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>第六周 随便找了道随机：<a href="https://leetcode.com/problems/shuffle-an-array/submissions/" target="_blank" rel="noopener">打乱数组LC384</a></p>
+<h4 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h4><p>简单题，题目要求打乱的排列组合返回的概率一致，那么产生的结果必须有 n! 种可能。采用<a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle" target="_blank" rel="noopener">洗牌算法</a>处理。</p>
+<pre><code>public class Solution {
+    private int[] nums;
+    private int[] copy;
+
+    public Solution(int[] nums) {
+        this.nums = nums;
+        this.copy = nums.clone();
+    }
+
+    public int[] reset() {
+       return copy;
+    }
+
+    public int[] shuffle() {
+        Random random = new Random();
+        for (int i = nums.length - 1; i &gt; 0; i--) {
+            int j = random.nextInt(i + 1);
+            int t = nums[i];
+            nums[i] = nums[j];
+            nums[j] = t;
+        }
+        return nums;
+    }
+ }   </code></pre><h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://medium.com/better-humans/how-to-wake-up-at-5-a-m-every-day-ceb02e29c802" target="_blank" rel="noopener">如何每天凌晨5点醒来</a> </p>
+<blockquote>
+<p>The repetition itself becomes the important thing; it’s a form of mesmerism.</p>
+<p>“重复”这个行为成为了重要的事情；这是催眠的一种形式 –村上春树</p>
+</blockquote>
+<h4 id="明确你早起的目的"><a href="#明确你早起的目的" class="headerlink" title="明确你早起的目的"></a>明确你早起的目的</h4><p>找到你做这件事的目的，你可以尝试使用<a href="https://en.wikipedia.org/wiki/5_Whys" target="_blank" rel="noopener">5 Whys</a> 分析法。</p>
+<p>使用 5Whys分析法：</p>
+<ol>
+<li>组织你的问题陈述。</li>
+<li>提出问题：“ 你为什么要[你的问题陈述]？”。将您的答案用作下一个问题陈述。</li>
+<li>一直问“为什么”，直到您问了五遍或更多次。</li>
+</ol>
+<p>举个栗子:</p>
+<blockquote>
+<p>我想每天早上五点起床。</p>
+<p>你为什么要每天早上五点起床?</p>
+<p>我想要更多的时间来提高工作效率</p>
+<p>你为什么要提高工作效率?</p>
+<p>我想锻炼自己的写作能力</p>
+<p>你为什么要锻炼自己的写作能力?</p>
+<p>我想写书。</p>
+<p>你为什么要写书？</p>
+<p>我想从事一份具有创造性的工作</p>
+<p>你为什么想从事一份具有创造性的工作？</p>
+<p>我认为这是某人在职业生涯中可以做的最充实的事情。</p>
+</blockquote>
+<h4 id="了解你的得失"><a href="#了解你的得失" class="headerlink" title="了解你的得失"></a>了解你的得失</h4><h5 id="你得到了什么："><a href="#你得到了什么：" class="headerlink" title="你得到了什么："></a>你得到了什么：</h5><p>你每天有几个小时没有任何人回来打扰你，你可以做你想要的任何事情，同时你拥有着一天最富有创造力的时间。</p>
+<h5 id="你失去了什么："><a href="#你失去了什么：" class="headerlink" title="你失去了什么："></a>你失去了什么：</h5><p>早起不会获得24小时之外的时间，它只是占用了你原来在深夜的时间；</p>
+<h5 id="你的时间总额："><a href="#你的时间总额：" class="headerlink" title="你的时间总额：#####"></a>你的时间总额：#####</h5><p>我在下午5点下班，然后我要在早上5点起床，那么就是说我在下班4个小时后就要睡觉</p>
+<h5 id="比较收益与成本："><a href="#比较收益与成本：" class="headerlink" title="比较收益与成本：#####"></a>比较收益与成本：#####</h5><p>问问自己这两个问题：</p>
+<ul>
+<li><p>早上加班我会得到什么？</p>
+</li>
+<li><p>我晚上失去的时间会失去什么？</p>
+</li>
+</ul>
+<p>然后问自己：“收益大于成本吗？”</p>
+<h4 id="专注于睡眠时间"><a href="#专注于睡眠时间" class="headerlink" title="专注于睡眠时间"></a>专注于睡眠时间</h4><ul>
+<li><p>获得充足的睡眠</p>
+</li>
+<li><p>比没有修改作息时多睡一段时间</p>
+</li>
+</ul>
+<h4 id="睡前离开你的手机"><a href="#睡前离开你的手机" class="headerlink" title="睡前离开你的手机"></a>睡前离开你的手机</h4><ul>
+<li><p>保持无聊的睡眠环境</p>
+</li>
+<li><p>让手机远离自己</p>
+</li>
+</ul>
+<p>艰难的调作息大作战又要开始了<del>~</del></p>
+<h2 id="Tip-amp-Share"><a href="#Tip-amp-Share" class="headerlink" title="Tip&amp;Share"></a>Tip&amp;Share</h2><p>由于公司搬家 如何上班变成了一个严重的问题，从原来的10~15分钟骑行（8.40起床/出门）到现在的90分钟通勤（7点左右起床）。这引起了一个重大问题= =作为夜猫子（02点睡的我）怎么在3天内调整作息到7点起，同时那接近一个小时的地铁要怎么度过。</p>
+<p>睡眠的问题找了个测试的文章= =先试一下再说。我要7点起 就是说必需再11点前睡着，那么起码要在10.30~40闭眼。</p>
+<p>第一个问题解决了那么就是第二个问题了纠结了下，选择了戴个耳机就能用的播客（当然久违的动车专用的kindle也可以放出来了，说不定刚好有位置就可以坐着看书了），毕竟长时间站立还要防止地铁突然起步刹车，单手站立看书说不定看认真了没站稳就在地上打滚了。</p>
+<p>那么就可以开始筛选要听的内容了：</p>
+<ol>
+<li><p>惯用的极客时间（卖桃者说、各种买了还没学完的课程），不过这里主要是技术类。</p>
+</li>
+<li><p>喜马拉雅、蜻蜓等fm电台，得到、知乎、樊登、新世相等读书会，但是就之前使用过的体验来说个人倾向于喜马拉雅。</p>
+<p> 顺带做个感兴趣的类目收集下 为之后做下准备：</p>
+<p> 播客：</p>
+<ul>
+<li>Steve说 话说之前的《假性亲密关系》也看过了，对心理学也有点兴趣先mark下</li>
+<li>郭德纲21年相声精选    免费榜榜首，拿来路上补觉貌似不错的样子 话说排前面的好多相声评书= =</li>
+<li>听林栖    貌似听听诗经也不错</li>
+<li>Blow your mind    一对心理学和数学系夫妻的对谈节目</li>
+<li>得意忘形 某位知乎的推荐</li>
+<li>迟早更新 这名字起的很有灵性关注了</li>
+<li>逻辑思维 听罗胖吹牛逼？</li>
+<li>樊登读书会</li>
+<li>晓松奇谈</li>
+<li>一千零一夜 梁文道</li>
+<li>健人贱语 又是一个有趣的名字</li>
+</ul>
+</li>
+</ol>
+<pre><code>当然喜马拉雅里也有听书，不过这个就随心情了。</code></pre><ol start="3">
+<li>备选实体书、kindle、微信读书（听说这里有挺多听书的资源）</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+    
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/19/arts-five/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -289,7 +491,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-24 11:16:29" itemprop="dateModified" datetime="2019-11-24T11:16:29+08:00">2019-11-24</time>
+                <time title="修改时间：2019-11-24 11:23:21" itemprop="dateModified" datetime="2019-11-24T11:23:21+08:00">2019-11-24</time>
               </span>
             
           
@@ -377,7 +579,7 @@
 <p>你是否笨手笨脚？你是否因为害怕尴尬而避开舞池？你是否想像明星一样拥有优美的舞姿？（至少在视频中是这样的）</p>
 <p>这里有一个全新的3D人体网格恢复AI模块<em>Liquid Warping GAN</em>可以帮到你。</p>
 <p>它只需要你的一张照片以及一个舞蹈视频片段。</p>
-<p><img src="https://github.com/svip-lab/impersonator/raw/master/assets/visuals/motion/Sweaters-id_0000088807_4_full.jpg" alt="yourimg"><br><img src="https://github.com/svip-lab/impersonator/raw/master/assets/visuals/motion/mixamo_0007_Sweaters-id_0000088807_4_full.gif" alt="result"></p>
+<p><img src="https://blog-1300448206.cos.ap-shanghai.myqcloud.com/dance-person.jpg" alt="yourimg"><br><img src="https://blog-1300448206.cos.ap-shanghai.myqcloud.com/dance.gif" alt="result"></p>
 <p>此前人类图像合成方法可能难以识别不同款式、颜色和质地的服装；不同人体的空间和几何的巨大差异；多样的输入源；</p>
 <p><em>Liquid Warping GAN</em>解决了这些问题，它不仅可以模拟关节的位置和旋转，而且可以通过单个图片和视频剪辑输入来表征个性化的身体形状</p>
 <p><img src="https://blog-1300448206.cos.ap-shanghai.myqcloud.com/image-ai-dance.png" alt="AI-DANCE"></p>
@@ -1243,7 +1445,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1278,12 +1480,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">12k</span>
+    <span title="站点总字数">13k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21 分钟</span>
+    <span title="站点阅读时长">24 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
