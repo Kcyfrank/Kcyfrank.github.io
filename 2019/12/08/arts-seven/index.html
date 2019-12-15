@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'copy',
+      copy_success: 'success',
+      copy_failure: 'failure'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Algorithm第七周 不知道写啥继续随机：随机数索引LC398 解题：解析题目可知，这是个蓄水池抽样算法Reservoir sampling 相对的难点在于我们找了了需要返回索引的数字n后不能直接返回索引 还要继续查找是否存在相同值，并且以相同的概率返回其中一个符合条件的值索引 1234567891011121314151617181920212223242526272829303132333">
+<meta property="og:type" content="article">
+<meta property="og:title" content="arts_seven">
+<meta property="og:url" content="http://yoursite.com/2019/12/08/arts-seven/index.html">
+<meta property="og:site_name" content="某某的杂货铺">
+<meta property="og:description" content="Algorithm第七周 不知道写啥继续随机：随机数索引LC398 解题：解析题目可知，这是个蓄水池抽样算法Reservoir sampling 相对的难点在于我们找了了需要返回索引的数字n后不能直接返回索引 还要继续查找是否存在相同值，并且以相同的概率返回其中一个符合条件的值索引 1234567891011121314151617181920212223242526272829303132333">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-08T03:39:40.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="arts_seven">
+<meta name="twitter:description" content="Algorithm第七周 不知道写啥继续随机：随机数索引LC398 解题：解析题目可知，这是个蓄水池抽样算法Reservoir sampling 相对的难点在于我们找了了需要返回索引的数字n后不能直接返回索引 还要继续查找是否存在相同值，并且以相同的概率返回其中一个符合条件的值索引 1234567891011121314151617181920212223242526272829303132333">
+  <link rel="canonical" href="http://yoursite.com/2019/12/08/arts-seven/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>arts_seven | 某某的杂货铺</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">某某的杂货铺</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">stop and find.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+        
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+      
+    
+      
+      
+        
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      
+    
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger">
+          <i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/arts-seven/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="forip">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="某某的杂货铺">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            arts_seven
+            
+
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-08 09:28:38 / 修改时间：11:39:40" itemprop="dateCreated datePublished" datetime="2019-12-08T09:28:38+08:00">2019-12-08</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>第七周 不知道写啥继续随机：<a href="https://leetcode.com/problems/random-pick-index/" target="_blank" rel="noopener">随机数索引LC398</a></p>
+<h4 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h4><p>解析题目可知，这是个蓄水池抽样算法<a href="https://en.wikipedia.org/wiki/Reservoir_sampling" target="_blank" rel="noopener">Reservoir sampling</a></p>
+<p>相对的难点在于我们找了了需要返回索引的数字n后不能直接返回索引 还要继续查找是否存在相同值，并且以相同的概率返回其中一个符合条件的值索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    private int[] nums;</span><br><span class="line">    public Solution(int[] nums) &#123;</span><br><span class="line">       this.nums = nums;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int pick(int target) &#123;</span><br><span class="line">        Random r = new Random();</span><br><span class="line">        int n = 0;</span><br><span class="line">        int index = 0;</span><br><span class="line">        for(int i = 0;i &lt; nums.length;i++)</span><br><span class="line">            if(nums[i] == target)&#123;</span><br><span class="line">            //我们的目标对象中选取。</span><br><span class="line">                n++;</span><br><span class="line">                //我们以1/n的概率留下该数据</span><br><span class="line">                if(r.nextInt() % n == 0) index = i;</span><br><span class="line">            &#125;</span><br><span class="line">        return index;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">## Review ##</span><br><span class="line">[高效程序员的七个习惯](https://medium.com/better-programming/7-habits-of-highly-effective-programmers-563ee3b63f33) </span><br><span class="line"></span><br><span class="line">1. 学会如何阅读他人的代码</span><br><span class="line">	</span><br><span class="line">	你的代码应该是不需要文档并且清晰明了的。如果你是一个优秀的软件工程师，你需要在思考优化代码上花费更多时间而不是追加文档说明来让他人看懂。</span><br><span class="line">2. 对不良项目的感知</span><br><span class="line">	</span><br><span class="line">	不要主动参与没有任何意义的项目。</span><br><span class="line">3. 避免开会！！</span><br><span class="line">	</span><br><span class="line">4. 使用合适的代码协同工具（github）</span><br><span class="line"></span><br><span class="line">5. 编写简单的可维护的代码</span><br><span class="line"></span><br><span class="line">6. 确认事件的优先顺序并且学会说不</span><br><span class="line"></span><br><span class="line">7. 设计时尽量预留拓展与追加容错机制</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Tip&amp;Share ##</span><br><span class="line"></span><br><span class="line">这次的分享来回顾一个基本概念，我们一直在说面向对象编程，那什么是面向对象？与之相对的面向过程又是什么？</span><br><span class="line"></span><br><span class="line">当然这里只是简单来了解一下两者的一点差别，如果后续有时间 我会自己再整理一个完整版。</span><br><span class="line"></span><br><span class="line">### 什么是面向过程？ ###</span><br><span class="line">面向过程编程(Procedure-oriented Programming)是一种以事物为中心的编程思想。主要关注“怎么做”，即完成任务的具体细节。“面向过程”也可称之为“面向记录”。</span><br><span class="line"></span><br><span class="line">举个栗子：早上到了，我们要上学，那么按照面向过程的写法，我们需要重点关注“怎么做”，抽象出过程中包含的所有动作与顺序。</span><br><span class="line"></span><br><span class="line">1. 起床</span><br><span class="line">2. 换衣服</span><br><span class="line">3. 洗漱</span><br><span class="line">4. 吃早餐</span><br><span class="line">5. 去学校</span><br><span class="line"></span><br><span class="line">然后我们需要按照顺序执行对应的方法才能完成我们的任务。</span><br><span class="line"></span><br><span class="line">### 什么是面向对象？ ###</span><br><span class="line"></span><br><span class="line">面向对象编程(Object-oriented Programming)是一种以对象为基础的编程思想。主要关注“谁来做”，即完成任务的对象。</span><br><span class="line"></span><br><span class="line">同样的栗子：如果我们是面向对象编程，我们关注的是“谁来做”，谁在上学？当然是学生啦~</span><br><span class="line"></span><br><span class="line">那么学生需要干嘛？起床、换衣服、洗漱、吃早餐、去学校啦，那么问题来了，那么多的学生每个人都吃早餐吗？他们都怎么去学校呢？</span><br><span class="line"></span><br><span class="line">在面向过程中，我们需要一步一步地设计某件事的每一步怎么做，当其中一部出现了变化，我们就要修改或者重新设计;</span><br><span class="line"></span><br><span class="line">但是对于面向对象而言，我们只需要抽象出相对的学生类（赋予其属性：学生描述、动作：起床、换衣服、洗漱、吃早餐、去学校），然后继承该父类并实现具体的学生来执行上学这个事。</span><br><span class="line"></span><br><span class="line">假设现在有一个不爱刷牙的做公交的学生 那么我们的实现肯定是这样的。</span><br></pre></td></tr></table></figure>
+
+<p>public class 学生 {<br>    void 起床(){};<br>    void 换衣服(){};<br>    void 洗漱(){};<br>    void 吃早餐(){};<br>    void 去学校(){};<br>}</p>
+<p>public class 脏学生 继承 学生{<br>    void 起床(){};<br>    void 换衣服(){};<br>    void 洗漱(){print:”我不洗！”;};<br>    void 吃早餐(){};<br>    void 去学校(){print:”坐公交”;};<br>}</p>
+<p>public static void main(String[] args){<br>    学生 学生1 = new 脏学生();<br>    学生1.起床();<br>    学生1.换衣服();<br>    学生1.洗漱();<br>    学生1.吃早餐();<br>    学生1.去学校();<br>}</p>
+<pre><code></code></pre>
+    </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/11/28/arts-six/" rel="next" title="arts_six">
+                  <i class="fa fa-chevron-left"></i> arts_six
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/12/14/arts-eight/" rel="prev" title="arts_eight">
+                  arts_eight <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解题："><span class="nav-number">1.0.1.</span> <span class="nav-text">解题：</span></a></li></ol></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">forip</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">forip</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">17k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">30 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+      
+    主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/pisces.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.1"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'c5e2bbe8e6d4ab0c6fdb',
+      clientSecret: '0f6b657186205a1d169e98dbc0078ea1199717af',
+      repo: 'Kcyfrank.github.io',
+      owner: 'Kcyfrank',
+      admin: ['Kcyfrank'],
+      id: '922393530705fd293c47981e4f381d3d',
+        language: window.navigator.language || window.navigator.userLanguage,
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+</body>
+</html>

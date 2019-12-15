@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="Algorithm第六周 随便找了道随机：打乱数组LC384 解题：简单题，题目要求打乱的排列组合返回的概率一致，那么产生的结果必须有 n! 种可能。采用洗牌算法处理。 public class Solution {     private int[] nums;     private int[] copy;      public Solution(int[] nums) {">
+  <meta name="description" content="Algorithm第八周 不知道写啥继续随机：链表随机节点LC382 给定一个单链表，随机选择链表的一个节点，并返回相应的节点值。保证每个节点被选的概率一样。 解题：解析题目可知，和之前的398一样这也是个蓄水池抽样算法Reservoir sampling 以相同的概率返回其中一个节点。 class Solution {     ListNode head;     Random random;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="arts_six">
-<meta property="og:url" content="http://yoursite.com/2019/11/28/arts-six/index.html">
+<meta property="og:title" content="arts_eight">
+<meta property="og:url" content="http://yoursite.com/2019/12/14/arts-eight/index.html">
 <meta property="og:site_name" content="某某的杂货铺">
-<meta property="og:description" content="Algorithm第六周 随便找了道随机：打乱数组LC384 解题：简单题，题目要求打乱的排列组合返回的概率一致，那么产生的结果必须有 n! 种可能。采用洗牌算法处理。 public class Solution {     private int[] nums;     private int[] copy;      public Solution(int[] nums) {">
+<meta property="og:description" content="Algorithm第八周 不知道写啥继续随机：链表随机节点LC382 给定一个单链表，随机选择链表的一个节点，并返回相应的节点值。保证每个节点被选的概率一样。 解题：解析题目可知，和之前的398一样这也是个蓄水池抽样算法Reservoir sampling 以相同的概率返回其中一个节点。 class Solution {     ListNode head;     Random random;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-01T03:46:08.589Z">
+<meta property="og:updated_time" content="2019-12-15T03:35:07.637Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="arts_six">
-<meta name="twitter:description" content="Algorithm第六周 随便找了道随机：打乱数组LC384 解题：简单题，题目要求打乱的排列组合返回的概率一致，那么产生的结果必须有 n! 种可能。采用洗牌算法处理。 public class Solution {     private int[] nums;     private int[] copy;      public Solution(int[] nums) {">
-  <link rel="canonical" href="http://yoursite.com/2019/11/28/arts-six/">
+<meta name="twitter:title" content="arts_eight">
+<meta name="twitter:description" content="Algorithm第八周 不知道写啥继续随机：链表随机节点LC382 给定一个单链表，随机选择链表的一个节点，并返回相应的节点值。保证每个节点被选的概率一样。 解题：解析题目可知，和之前的398一样这也是个蓄水池抽样算法Reservoir sampling 以相同的概率返回其中一个节点。 class Solution {     ListNode head;     Random random;">
+  <link rel="canonical" href="http://yoursite.com/2019/12/14/arts-eight/">
 
 
 <script id="page-configurations">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>arts_six | 某某的杂货铺</title>
+  <title>arts_eight | 某某的杂货铺</title>
   
 
 
@@ -252,7 +252,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/28/arts-six/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/14/arts-eight/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="forip">
@@ -266,7 +266,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            arts_six
+            arts_eight
             
 
           
@@ -283,7 +283,7 @@
                 
               
 
-              <time title="创建时间：2019-11-28 15:43:49" itemprop="dateCreated datePublished" datetime="2019-11-28T15:43:49+08:00">2019-11-28</time>
+              <time title="创建时间：2019-12-14 22:56:53" itemprop="dateCreated datePublished" datetime="2019-12-14T22:56:53+08:00">2019-12-14</time>
             </span>
           
             
@@ -294,7 +294,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-01 11:46:08" itemprop="dateModified" datetime="2019-12-01T11:46:08+08:00">2019-12-01</time>
+                <time title="修改时间：2019-12-15 11:35:07" itemprop="dateModified" datetime="2019-12-15T11:35:07+08:00">2019-12-15</time>
               </span>
             
           
@@ -308,7 +308,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>1.7k</span>
+              <span>1.6k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -331,109 +331,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>第六周 随便找了道随机：<a href="https://leetcode.com/problems/shuffle-an-array/submissions/" target="_blank" rel="noopener">打乱数组LC384</a></p>
-<h4 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h4><p>简单题，题目要求打乱的排列组合返回的概率一致，那么产生的结果必须有 n! 种可能。采用<a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle" target="_blank" rel="noopener">洗牌算法</a>处理。</p>
-<pre><code>public class Solution {
-    private int[] nums;
-    private int[] copy;
+        <h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>第八周 不知道写啥继续随机：<a href="https://leetcode.com/problems/linked-list-random-node/" target="_blank" rel="noopener">链表随机节点LC382</a></p>
+<p>给定一个单链表，随机选择链表的一个节点，并返回相应的节点值。保证每个节点被选的概率一样。</p>
+<h4 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h4><p>解析题目可知，和之前的398一样这也是个蓄水池抽样算法<a href="https://en.wikipedia.org/wiki/Reservoir_sampling" target="_blank" rel="noopener">Reservoir sampling</a></p>
+<p>以相同的概率返回其中一个节点。</p>
+<pre><code>class Solution {
+    ListNode head;
+    Random random;
 
-    public Solution(int[] nums) {
-        this.nums = nums;
-        this.copy = nums.clone();
+    public Solution(ListNode h) {
+        head = h;       
+        random = new Random();        
     }
 
-    public int[] reset() {
-       return copy;
-    }
-
-    public int[] shuffle() {
-        Random random = new Random();
-        for (int i = nums.length - 1; i &gt; 0; i--) {
-            int j = random.nextInt(i + 1);
-            int t = nums[i];
-            nums[i] = nums[j];
-            nums[j] = t;
+    public int getRandom() {
+        ListNode c = head;
+        int r = c.val;
+        for(int i = 1 ; c.next != null ; i++){
+            c = c.next;
+            if(random.nextInt(i + 1) == i) {
+                r = c.val;              
+            }      
         }
-        return nums;
+
+        return r;
     }
- }   </code></pre><h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://medium.com/better-humans/how-to-wake-up-at-5-a-m-every-day-ceb02e29c802" target="_blank" rel="noopener">如何每天凌晨5点醒来</a> </p>
+}</code></pre><h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a href="https://medium.com/how-to-live/read-a-lot-then-forget-most-of-what-you-read-71aa37e1a9cb" target="_blank" rel="noopener">大量阅读，然后忘记大部分读过的内容</a> </p>
+<p>现在我们有多种多样的阅读方式：有声读物、电子书、纸质书等。我曾经试过边读书边写笔记。尽管这种主动学习的做法阅读速度很慢，但我学习到了很多新的内容。这个方法激发了我对小说意外的书籍的阅读兴趣。我花了相当长的时间（1-2年）使用这种方式读书，但最后我放弃了。</p>
+<p>我试过一年读25本书，比我以前每年读0本多多了。但是2018年，我只读了12本。尽管比大多数人多，但是阅读体验实在太差了。我太忙了以至于一直带着焦虑的心情来读书。我同时在学习、工作、进行第三方项目间循环。阅读让我的大脑摄入了过多的知识量以至于超载。所以我停下了阅读。我希望我没有停下，因为我浪费了一年的阅读时间，但是我没有更好的阅读方法。</p>
+<p>我不知道还有其他阅读方案:</p>
 <blockquote>
-<p>The repetition itself becomes the important thing; it’s a form of mesmerism.</p>
-<p>“重复”这个行为成为了重要的事情；这是催眠的一种形式 –村上春树</p>
+<p>大量阅读，然后忘记大部分读过的内容</p>
 </blockquote>
-<h4 id="明确你早起的目的"><a href="#明确你早起的目的" class="headerlink" title="明确你早起的目的"></a>明确你早起的目的</h4><p>找到你做这件事的目的，你可以尝试使用<a href="https://en.wikipedia.org/wiki/5_Whys" target="_blank" rel="noopener">5 Whys</a> 分析法。</p>
-<p>使用 5Whys分析法：</p>
+<p>这方法听起来很愚蠢。但是他有着多种用途。</p>
 <ol>
-<li>组织你的问题陈述。</li>
-<li>提出问题：“ 你为什么要[你的问题陈述]？”。将您的答案用作下一个问题陈述。</li>
-<li>一直问“为什么”，直到您问了五遍或更多次。</li>
+<li>它使我拜托了对阅读的恐惧、减轻了阅读的压力。</li>
+<li>不需要笔记，只是阅读。</li>
+<li>为了体验书籍的内容而不是为了其他</li>
 </ol>
-<p>举个栗子:</p>
-<blockquote>
-<p>我想每天早上五点起床。</p>
-<p>你为什么要每天早上五点起床?</p>
-<p>我想要更多的时间来提高工作效率</p>
-<p>你为什么要提高工作效率?</p>
-<p>我想锻炼自己的写作能力</p>
-<p>你为什么要锻炼自己的写作能力?</p>
-<p>我想写书。</p>
-<p>你为什么要写书？</p>
-<p>我想从事一份具有创造性的工作</p>
-<p>你为什么想从事一份具有创造性的工作？</p>
-<p>我认为这是某人在职业生涯中可以做的最充实的事情。</p>
+<p>使用这种方式读书，你能在任何地方阅读。你放弃了最具有主动性的阅读方式、你不会感到被强迫集中注意力阅读。你可以轻松地随时随地地阅读。这会使你阅读更多的内容以及是阅读变得愉快。</p>
+<h2 id="Tip-amp-Share"><a href="#Tip-amp-Share" class="headerlink" title="Tip&amp;Share"></a>Tip&amp;Share</h2><h3 id="什么是时间管理？"><a href="#什么是时间管理？" class="headerlink" title="什么是时间管理？"></a>什么是时间管理？</h3><blockquote>
+<p>时间管理是指通过事先规划和运用一定的技巧、方法与工具实现对时间的灵活以及有效运用，从而实现个人或组织的既定目标的过程。</p>
 </blockquote>
-<h4 id="了解你的得失"><a href="#了解你的得失" class="headerlink" title="了解你的得失"></a>了解你的得失</h4><h5 id="你得到了什么："><a href="#你得到了什么：" class="headerlink" title="你得到了什么："></a>你得到了什么：</h5><p>你每天有几个小时没有任何人回来打扰你，你可以做你想要的任何事情，同时你拥有着一天最富有创造力的时间。</p>
-<h5 id="你失去了什么："><a href="#你失去了什么：" class="headerlink" title="你失去了什么："></a>你失去了什么：</h5><p>早起不会获得24小时之外的时间，它只是占用了你原来在深夜的时间；</p>
-<h5 id="你的时间总额："><a href="#你的时间总额：" class="headerlink" title="你的时间总额：#####"></a>你的时间总额：#####</h5><p>我在下午5点下班，然后我要在早上5点起床，那么就是说我在下班4个小时后就要睡觉</p>
-<h5 id="比较收益与成本："><a href="#比较收益与成本：" class="headerlink" title="比较收益与成本：#####"></a>比较收益与成本：#####</h5><p>问问自己这两个问题：</p>
-<ul>
-<li><p>早上加班我会得到什么？</p>
-</li>
-<li><p>我晚上失去的时间会失去什么？</p>
-</li>
-</ul>
-<p>然后问自己：“收益大于成本吗？”</p>
-<h4 id="专注于睡眠时间"><a href="#专注于睡眠时间" class="headerlink" title="专注于睡眠时间"></a>专注于睡眠时间</h4><ul>
-<li><p>获得充足的睡眠</p>
-</li>
-<li><p>比没有修改作息时多睡一段时间</p>
-</li>
-</ul>
-<h4 id="睡前离开你的手机"><a href="#睡前离开你的手机" class="headerlink" title="睡前离开你的手机"></a>睡前离开你的手机</h4><ul>
-<li><p>保持无聊的睡眠环境</p>
-</li>
-<li><p>让手机远离自己</p>
-</li>
-</ul>
-<p>艰难的调作息大作战又要开始了<del>~</del></p>
-<h2 id="Tip-amp-Share"><a href="#Tip-amp-Share" class="headerlink" title="Tip&amp;Share"></a>Tip&amp;Share</h2><p>由于公司搬家 如何上班变成了一个严重的问题，从原来的10~15分钟骑行（8.40起床/出门）到现在的90分钟通勤（7点左右起床）。这引起了一个重大问题= =作为夜猫子（02点睡的我）怎么在3天内调整作息到7点起，同时那接近一个小时的地铁要怎么度过。</p>
-<p>睡眠的问题找了个测试的文章= =先试一下再说。我要7点起 就是说必需再11点前睡着，那么起码要在10.30~40闭眼。</p>
-<p>第一个问题解决了那么就是第二个问题了纠结了下，选择了戴个耳机就能用的播客（当然久违的动车专用的kindle也可以放出来了，说不定刚好有位置就可以坐着看书了），毕竟长时间站立还要防止地铁突然起步刹车，单手站立看书说不定看认真了没站稳就在地上打滚了。</p>
-<p>那么就可以开始筛选要听的内容了：</p>
-<ol>
-<li><p>惯用的极客时间（卖桃者说、各种买了还没学完的课程），不过这里主要是技术类。</p>
-</li>
-<li><p>喜马拉雅、蜻蜓等fm电台，得到、知乎、樊登、新世相等读书会，但是就之前使用过的体验来说个人倾向于喜马拉雅。</p>
-<p> 顺带做个感兴趣的类目收集下 为之后做下准备：</p>
-<p> 播客：</p>
-<ul>
-<li>Steve说 话说之前的《假性亲密关系》也看过了，对心理学也有点兴趣先mark下</li>
-<li>郭德纲21年相声精选    免费榜榜首，拿来路上补觉貌似不错的样子 话说排前面的好多相声评书= =</li>
-<li>听林栖    貌似听听诗经也不错</li>
-<li>Blow your mind    一对心理学和数学系夫妻的对谈节目</li>
-<li>得意忘形 某位知乎的推荐</li>
-<li>迟早更新 这名字起的很有灵性关注了</li>
-<li>逻辑思维 听罗胖吹牛逼？</li>
-<li>樊登读书会</li>
-<li>晓松奇谈</li>
-<li>一千零一夜 梁文道</li>
-<li>健人贱语 又是一个有趣的名字</li>
-</ul>
-</li>
-</ol>
-<pre><code>当然喜马拉雅里也有听书，不过这个就随心情了。</code></pre><ol start="3">
-<li>备选实体书、kindle、微信读书（听说这里有挺多听书的资源）</li>
-</ol>
+<p>就我了解的时间管理主要都是两个方面：一、分清事物的轻重缓急；二、在固定时间内提高自己的效率；</p>
+<h5 id="第一种的主要代表就是四象限法则"><a href="#第一种的主要代表就是四象限法则" class="headerlink" title="第一种的主要代表就是四象限法则"></a>第一种的主要代表就是四象限法则</h5><p>以重要和紧急为衡量标准的坐标轴，分为重要紧急、紧急但不重要、重要但不紧急、既不重要也不紧急四个象限，把每天的任务都对号入座放入坐标轴，然后安排自己的任务。</p>
+<p>然而该法则的重点不是怎么实行，而是在怎么区分好每件事的重要程度。你必需明确什么是重要，什么是紧急，而这个概念对每个人都不一样，每一件任务下来在别人的口头它永远是又重要又紧急的，但是对我们自己而言它的重要程度又不一样，我们能确定的只有一件 我们自己的持续学习永远是重要但不紧急的。</p>
+<h5 id="第二种的主要代表就是番茄钟"><a href="#第二种的主要代表就是番茄钟" class="headerlink" title="第二种的主要代表就是番茄钟"></a>第二种的主要代表就是番茄钟</h5><p>采用便捷的厨房番茄钟来实行的一个锻炼注意力并提高效率的方法。</p>
+<p>不断的重复集中注意力25分钟休息5分钟的过程来让锻炼自己的集中注意力的能力，已达到在指定时间里发挥出更高效率的方法。当不断习惯后，集中注意力的时间可能自行加长。</p>
+<h5 id="个人实行总结"><a href="#个人实行总结" class="headerlink" title="个人实行总结"></a>个人实行总结</h5><p>第一种方式主要是任务安排的技巧，自从学会后当任务变多了，我会不自觉地开始使用四象限。但是仅限于任务，对于个人计划的安排，很遗憾地由于个人自制力问题一直没有有效的实行。</p>
+<p>第二种方式，番茄钟试行过一个月，虽说其中一星期可能打扰较少，番茄钟很好的实行了下去，但是大多数情况都是10分钟一个打断，甚至刚开始5分钟就被打断以至于重新开始。相对而言我自己不太喜欢番茄钟，因为进入认真状态然后被25分钟的闹钟打扰时间非常难受的事情。</p>
 
     </div>
 
@@ -450,8 +396,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/11/19/arts-five/" rel="next" title="arts_five">
-                  <i class="fa fa-chevron-left"></i> arts_five
+                <a href="/2019/12/08/arts-seven/" rel="next" title="arts_seven">
+                  <i class="fa fa-chevron-left"></i> arts_seven
                 </a>
               
             </div>
@@ -459,10 +405,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/12/08/arts-seven/" rel="prev" title="arts_seven">
-                  arts_seven <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -511,7 +453,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解题："><span class="nav-number">1.0.1.</span> <span class="nav-text">解题：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Review"><span class="nav-number">2.</span> <span class="nav-text">Review</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#明确你早起的目的"><span class="nav-number">2.0.1.</span> <span class="nav-text">明确你早起的目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#了解你的得失"><span class="nav-number">2.0.2.</span> <span class="nav-text">了解你的得失</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#你得到了什么："><span class="nav-number">2.0.2.1.</span> <span class="nav-text">你得到了什么：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#你失去了什么："><span class="nav-number">2.0.2.2.</span> <span class="nav-text">你失去了什么：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#你的时间总额："><span class="nav-number">2.0.2.3.</span> <span class="nav-text">你的时间总额：#####</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#比较收益与成本："><span class="nav-number">2.0.2.4.</span> <span class="nav-text">比较收益与成本：#####</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#专注于睡眠时间"><span class="nav-number">2.0.3.</span> <span class="nav-text">专注于睡眠时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#睡前离开你的手机"><span class="nav-number">2.0.4.</span> <span class="nav-text">睡前离开你的手机</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tip-amp-Share"><span class="nav-number">3.</span> <span class="nav-text">Tip&amp;Share</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解题："><span class="nav-number">1.0.1.</span> <span class="nav-text">解题：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Review"><span class="nav-number">2.</span> <span class="nav-text">Review</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tip-amp-Share"><span class="nav-number">3.</span> <span class="nav-text">Tip&amp;Share</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是时间管理？"><span class="nav-number">3.1.</span> <span class="nav-text">什么是时间管理？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一种的主要代表就是四象限法则"><span class="nav-number">3.1.0.1.</span> <span class="nav-text">第一种的主要代表就是四象限法则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二种的主要代表就是番茄钟"><span class="nav-number">3.1.0.2.</span> <span class="nav-text">第二种的主要代表就是番茄钟</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#个人实行总结"><span class="nav-number">3.1.0.3.</span> <span class="nav-text">个人实行总结</span></a></li></ol></li></ol></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -645,7 +587,7 @@
       repo: 'Kcyfrank.github.io',
       owner: 'Kcyfrank',
       admin: ['Kcyfrank'],
-      id: '8321862ba155063bfec36d6108b83993',
+      id: '53f6f6cb00fe50840f6055a62ba79c18',
         language: window.navigator.language || window.navigator.userLanguage,
       
       distractionFreeMode: 'true'
